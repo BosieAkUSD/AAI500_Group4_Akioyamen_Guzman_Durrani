@@ -1,26 +1,23 @@
-# Install ucimlrepo package
-
-# Note: For this to work run pip install ucimlrepo on your terminal
+import pandas as pd
+from sklearn.datasets import load_breast_cancer
 import ucimlrepo
-
-# Import necessary functions from ucimlrepo package
 from ucimlrepo import fetch_ucirepo
 
+def fetch_and_describe_dataset():
+    # Load the Breast Cancer Wisconsin Diagnostic dataset from scikit-learn
+    breast_cancer = load_breast_cancer()
 
-def fetch_dataset():
+    # Convert the data to a pandas DataFrame
+    df = pd.DataFrame(data=breast_cancer.data, columns=breast_cancer.feature_names)
+
+    # Describe the dataset
+    description = df.describe()
+
+    # Print summary statistics of the dataset
+    print(description)
+
+def fetch_dataset_metadata():
     # Fetch dataset with ID 17 (Breast Cancer Wisconsin Diagnostic)
     breast_cancer_wisconsin_diagnostic = fetch_ucirepo(id=17)
 
-    # Extract features and targets from the fetched dataset
-    X = breast_cancer_wisconsin_diagnostic.data.features
-    y = breast_cancer_wisconsin_diagnostic.data.targets
-
-    # Print metadata of the dataset
-    print(breast_cancer_wisconsin_diagnostic.metadata)
-
-    # Print variable information of the dataset
-    print(breast_cancer_wisconsin_diagnostic.variables)
-
     return breast_cancer_wisconsin_diagnostic
-
-#fetch_dataset()

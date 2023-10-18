@@ -6,9 +6,8 @@ from sklearn.linear_model import LogisticRegression
 import dataset_analysis as dataset_analysis
 import matplotlib.pyplot as plt
 
-breast_cancer_data_set = dataset_analysis.fetch_dataset()
+breast_cancer_data_set = dataset_analysis.fetch_dataset_metadata()
 data_url = breast_cancer_data_set.metadata.data_url
-#print(data_url)
 
 # Loading dataset into a DataFrame from the given URL
 df = pd.read_csv(data_url)
