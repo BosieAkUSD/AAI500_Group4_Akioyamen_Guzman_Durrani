@@ -27,6 +27,9 @@ df.head()
 y = df["Diagnosis"]
 X = df.drop(["Diagnosis"], axis=1)
 
+training_accuracy = ""
+testing_accuracy = ""
+
 print(y.shape)
 print(X.shape)
 
@@ -157,8 +160,14 @@ def LogisticRegression(X_train, y_train, X_test, y_test, epochs=3000, lr=0.01):
     Label_predict_train = prediction(w, b, X_train)
     Label_predict_test = prediction(w, b, X_test)
     # Printing train and test set accuracy
-    print("Training accuracy: {} %".format(100 - np.mean(np.abs(Label_predict_train - y_train)) * 100))
-    print("Testing accuracy: {} %".format(100 - np.mean(np.abs(Label_predict_test - y_test)) * 100))
+    global training_accuracy 
+    training_accuracy = "Training accuracy: {} %".format(100 - np.mean(np.abs(Label_predict_train - y_train)) * 100)
+
+    global testing_accuracy
+    testing_accuracy = "Testing accuracy: {} %".format(100 - np.mean(np.abs(Label_predict_test - y_test)) * 100)
+
+    print(training_accuracy)
+    print(testing_accuracy)
 
     all_param_dict = {"w":w, "b":b, "costs":costs, "learning_rate":lr, "epochs":epochs}
 
@@ -168,8 +177,6 @@ def LogisticRegression(X_train, y_train, X_test, y_test, epochs=3000, lr=0.01):
 all_param_dict = LogisticRegression(X_train, y_train, X_test, y_test, epochs=3000, lr=0.005)
 
 # graph plotting
-
-
 def Graph():
     test_loss = all_param_dict['costs']
     plt.plot(test_loss)
@@ -177,3 +184,7 @@ def Graph():
     plt.ylabel('costs')
     plt.xlabel('epochs')
     plt.show()
+
+def Accuracy():
+    print(training_accuracy)
+    print(testing_accuracy)
