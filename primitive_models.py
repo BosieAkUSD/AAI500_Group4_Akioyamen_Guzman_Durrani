@@ -16,4 +16,4 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=.5,random_sta
 clf = LazyClassifier(verbose=0,ignore_warnings=True, custom_metric=None)
 
 # Fit the classifier on the training data and make predictions on the test data
-models,predictions = clf.fit(X_train, X_test, y_train, y_test)
+models, predictions = clf.fit(X_train, X_test, y_train, y_test)
